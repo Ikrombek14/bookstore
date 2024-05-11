@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookstore</title>
+<style>
+body, h1, h2, h3, h4, h5, h6, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    padding: 20px 0;
+    background: #333;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    background: #444;
+    padding: 10px 0;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #74ebd5;
+}
+
+.books-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.book {
+    width: 200px;
+    margin: 10px;
+    padding: 20px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.book h3 {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.book p {
+    font-size: 0.9em;
+    line-height: 1.5em;
+}
+
+.book img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.book span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #f64f59;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    flex: 1;
+}
+
+.footer {
+    position: sticky;
+    top: 100vh;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1em;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Bookstore</h1>
+</div>
+
+<div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">New Releases</a>
+    <a href="#">Best Sellers</a>
+    <a href="#">Genres</a>
+    <a href="#">Your Account</a>
+</div>
+
+<div class="container">
+
+    <h2>New Releases</h2>
+
+    <div class="books-list">
+    {% for book in books %}
+    <div class="book">
+        <img src="{{ book.image.url }}" alt="{{ book.title }}">
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.author }}</p>
+        <span>{{ book.price }}</span>
+        <a href="{% url 'book_detail' book.pk %}">More Details</a>
+    </div>
+    {% endfor %}
+</div>
+
+
+</div>
+
+<div class="footer">
+    <p>&copy; 2024 Awesome Bookstore</p>
+</div>
+
+</body>
+</html>

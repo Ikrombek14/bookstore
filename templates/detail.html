@@ -1,0 +1,181 @@
+<!--&lt;!&ndash; book_detail.html &ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>{{ book.title }}</title>-->
+<!--</head>-->
+<!--<style>-->
+<!--/* Reset CSS */-->
+<!--* {-->
+<!--    margin: 0;-->
+<!--    padding: 0;-->
+<!--    box-sizing: border-box;-->
+<!--}-->
+
+<!--body {-->
+<!--    font-family: Arial, sans-serif;-->
+<!--    background-color: #f8f9fa;-->
+<!--    color: #333;-->
+<!--}-->
+
+<!--.container {-->
+<!--    max-width: 1200px;-->
+<!--    margin: 0 auto;-->
+<!--    padding: 0 15px;-->
+<!--}-->
+
+<!--header {-->
+<!--    background-color: #343a40;-->
+<!--    color: #fff;-->
+<!--    padding: 20px 0;-->
+<!--    text-align: center;-->
+<!--}-->
+
+<!--header h1 {-->
+<!--    font-size: 36px; /* Balandlikni o'zgartirdim */-->
+<!--}-->
+
+<!--nav ul {-->
+<!--    float: right;-->
+<!--}-->
+
+<!--nav ul li {-->
+<!--    display: inline;-->
+<!--    margin-left: 20px;-->
+<!--}-->
+
+<!--nav ul li a {-->
+<!--    color: #fff;-->
+<!--    text-decoration: none;-->
+<!--    font-size: 18px; /* Menyudagi matnlarni kattalashtirdim */-->
+<!--}-->
+
+<!--section {-->
+<!--    padding: 50px 0;-->
+<!--}-->
+
+<!--section h2 {-->
+<!--    margin-bottom: 30px;-->
+<!--    text-align: center;-->
+<!--}-->
+
+<!--.detail-info {-->
+<!--    background-color: #fff;-->
+<!--    padding: 20px;-->
+<!--    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--    border-radius: 10px; /* Batafsilning engil radiusini o'zgartirdim */-->
+<!--}-->
+
+<!--.detail-info h3 {-->
+<!--    font-size: 24px; /* Batafsil sarlavhasini kattalashtirdim */-->
+<!--    margin-bottom: 20px; /* Batafsil sarlavhasining pastki o'lchamini o'zgartirdim */-->
+<!--}-->
+
+<!--.detail-info p {-->
+<!--    font-size: 18px; /* Batafsil matnlarini kattalashtirdim */-->
+<!--    margin-bottom: 15px;-->
+<!--}-->
+
+<!--.detail-info strong {-->
+<!--    font-weight: bold;-->
+<!--}-->
+
+<!--</style>-->
+
+<!--<body>-->
+<!--    <h2>{{ book.title }}</h2>-->
+<!--    <p>Author: {{ book.author }}</p>-->
+<!--    <p>Price: {{ book.price }}</p>-->
+<!--    <p>Description: {{ book.description }}</p>-->
+<!--    <img src="{{ book.image.url }}" alt="{{ book.title }}">-->
+<!--    &lt;!&ndash; Boshqa ma'lumotlar ... &ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .book-details {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .book-image {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .book-info {
+            text-align: left;
+        }
+
+        .book-info p {
+            margin-bottom: 10px;
+        }
+
+        .book-info span {
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Details</h1>
+        <div class="book-details">
+            <img src="{% if book.image %}{{ book.image.url }}{% else %}path_to_default_image.jpg{% endif %}" alt="Book Cover" class="book-image">
+            <div class="book-info">
+                <p><span>Title:</span> {{ book.title }}</p>
+                <p><span>Author:</span> {{ book.author }}</p>
+                <p><span>Price:</span> {{ book.price }} So'm</p>
+                <p><span>Description:</span> {{ book.description }}</p>
+                <!-- Boshqa ma'lumotlar -->
+            </div>
+        </div>
+        <a href="{% url 'index' %}" class="back-link">Back to New Releases</a>
+        <a href="{% url 'add_book' %}" class="back-link">Add book</a>
+        <a href="{% url 'update_book' book.pk %}" class="back-link">Edit book</a>
+
+        <a href="{% url 'delete_book' book.pk %}" class="back-link">Delete book</a>
+    </div>
+</body>
+</html>
